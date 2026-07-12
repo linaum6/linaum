@@ -8,7 +8,6 @@
 
 <title>Catalina Ulloa Mujica</title>
 
-<!-- Tipografías -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,130 +17,49 @@
 
 <style>
 
-/* ===========================
-RESET
-=========================== */
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
-
-html{
-scroll-behavior:smooth;
-}
 
 
 body{
 
-background:#F5F2EC;
+background:white;
 
 font-family:'Manrope',sans-serif;
 
-overflow:hidden;
+color:#202020;
 
 }
 
 
 
-/* ===========================
-PORTADA
-=========================== */
+/* =====================
+CABECERA
+===================== */
 
 
-.hero{
+.header{
 
-position:relative;
-
-width:100%;
-
-height:100vh;
-
-overflow:hidden;
-
-}
-
-
-
-/* Imagen */
-
-.hero img{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-}
-
-
-
-/* Capa de luz */
-
-.overlay{
-
-position:absolute;
-
-inset:0;
-
-
-/* Mantiene lectura sin quitar protagonismo a la imagen */
-
-background:
-
-linear-gradient(
-rgba(245,242,236,.12),
-rgba(245,242,236,.22)
-),
-
-radial-gradient(
-circle,
-rgba(255,255,255,.04),
-rgba(0,0,0,.18)
-);
-
-
-z-index:1;
-
-}
-
-
-
-/* Contenido */
-
-
-.menu{
-
-position:relative;
-
-z-index:2;
-
-
-width:100%;
-
-height:100vh;
-
+height:38vh;
 
 display:flex;
 
 flex-direction:column;
 
-
 justify-content:center;
 
 align-items:center;
 
+text-align:center;
 
-transform:translateY(-35px);
+background:white;
 
 }
 
@@ -152,36 +70,25 @@ transform:translateY(-35px);
 
 h1{
 
-
 font-family:'Cormorant Garamond',serif;
 
-
-font-size:clamp(3rem,6vw,6rem);
-
+font-size:clamp(3rem,5vw,5rem);
 
 font-weight:500;
-
 
 letter-spacing:.03em;
 
 
-color:#202020;
-
-
-text-align:center;
-
-
 opacity:0;
 
-
-animation:fadeUp 1.2s ease forwards;
-
+animation:fadeDown 1.2s ease forwards;
 
 }
 
 
 
-/* Alias */
+
+/* Linaum */
 
 
 .alias{
@@ -190,35 +97,37 @@ animation:fadeUp 1.2s ease forwards;
 margin-top:10px;
 
 
-font-size:.85rem;
+font-size:.9rem;
 
 
-letter-spacing:.45em;
+letter-spacing:.35em;
 
 
 text-transform:uppercase;
 
 
-color:#5c5c5c;
+color:#252321;
 
 
 opacity:0;
 
 
-animation:fadeUp 1.2s ease .4s forwards;
+animation:fadeDown 1.2s ease .35s forwards;
 
 
 }
 
 
 
-/* Navegación */
+/* =====================
+MENU
+===================== */
 
 
 .nav{
 
 
-margin-top:55px;
+margin-top:45px;
 
 
 display:flex;
@@ -230,14 +139,11 @@ gap:55px;
 opacity:0;
 
 
-animation:fadeUp 1.2s ease .8s forwards;
+animation:fadeDown 1.2s ease .7s forwards;
 
 
 }
 
-
-
-/* Links */
 
 
 .nav a{
@@ -249,23 +155,17 @@ position:relative;
 text-decoration:none;
 
 
-font-size:.95rem;
-
-
 color:#202020;
+
+
+font-size:.95rem;
 
 
 letter-spacing:.08em;
 
 
-transition:.35s;
-
-
 }
 
-
-
-/* Línea terracota */
 
 
 .nav a::after{
@@ -280,7 +180,7 @@ position:absolute;
 left:0;
 
 
-bottom:-7px;
+bottom:-8px;
 
 
 width:0;
@@ -320,12 +220,51 @@ width:100%;
 
 
 
-/* ===========================
-ANIMACIÓN TEXTO
-=========================== */
+/* =====================
+IMAGEN
+===================== */
 
 
-@keyframes fadeUp{
+.hero-image{
+
+
+width:100%;
+
+height:62vh;
+
+overflow:hidden;
+
+
+}
+
+
+
+.hero-image img{
+
+
+width:100%;
+
+
+height:100%;
+
+
+object-fit:cover;
+
+
+display:block;
+
+
+}
+
+
+
+
+/* =====================
+ANIMACIONES
+===================== */
+
+
+@keyframes fadeDown{
 
 
 from{
@@ -333,10 +272,11 @@ from{
 
 opacity:0;
 
-transform:translateY(25px);
+transform:translateY(-25px);
 
 
 }
+
 
 
 to{
@@ -355,43 +295,19 @@ transform:translateY(0);
 
 
 
-/* ===========================
-TABLET
-=========================== */
 
-
-@media(max-width:900px){
-
-
-.nav{
-
-
-gap:30px;
-
-
-}
-
-
-}
-
-
-
-
-/* ===========================
-CELULAR
-=========================== */
+/* =====================
+RESPONSIVE
+===================== */
 
 
 @media(max-width:700px){
 
 
-.menu{
+.header{
 
 
-padding:25px;
-
-
-transform:none;
+height:45vh;
 
 
 }
@@ -407,29 +323,16 @@ font-size:2.8rem;
 }
 
 
-
-.alias{
-
-
-font-size:.75rem;
-
-
-}
-
-
-
 .nav{
 
 
-gap:18px;
-
-
-margin-top:40px;
-
+gap:20px;
 
 flex-wrap:wrap;
 
 justify-content:center;
+
+padding:0 20px;
 
 
 }
@@ -439,14 +342,24 @@ justify-content:center;
 .nav a{
 
 
-font-size:.9rem;
+font-size:.85rem;
 
 
 }
 
 
 
+.hero-image{
+
+
+height:55vh;
+
+
 }
+
+
+}
+
 
 
 </style>
@@ -459,19 +372,8 @@ font-size:.9rem;
 <body>
 
 
-<section class="hero">
 
-
-<img src="portada.jpg" alt="Obra de Catalina Ulloa Mujica">
-
-
-
-<div class="overlay"></div>
-
-
-
-<div class="menu">
-
+<header class="header">
 
 
 <h1>
@@ -485,37 +387,42 @@ Ulloa Mujica
 
 <p class="alias">
 
-Linaum
+linaum
 
 </p>
 
 
 
 
-<div class="nav">
+<nav class="nav">
 
 
 <a href="obras.html">Obras</a>
 
-
 <a href="exposiciones.html">Exposiciones</a>
 
-
 <a href="estudios.html">Estudios</a>
-
 
 <a href="artista.html">Artista</a>
 
 
-</div>
+</nav>
 
 
 
-</div>
+</header>
 
+
+
+
+<section class="hero-image">
+
+
+<img src="portada.jpg" alt="Obra de Catalina Ulloa Mujica">
 
 
 </section>
+
 
 
 </body>
