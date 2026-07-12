@@ -27,45 +27,186 @@ box-sizing:border-box;
 }
 
 
+
 body{
 
-background:white;
+background:rgb(255,84,92);
 
 font-family:'Manrope',sans-serif;
 
-color:#202020;
+color:#241F1F;
+
+height:100vh;
+
+overflow:hidden;
 
 }
 
 
 
 /* =====================
-CABECERA
+CONTENEDOR GENERAL
 ===================== */
 
 
-.header{
+.portfolio{
 
-
-height:34vh;
-
+width:100%;
+height:100vh;
 
 display:flex;
 
 flex-direction:column;
 
+align-items:center;
 
-justify-content:center;
+}
 
+
+
+/* =====================
+MENU SUPERIOR
+===================== */
+
+
+.nav{
+
+position:absolute;
+
+top:45px;
+
+display:flex;
+
+gap:55px;
+
+opacity:0;
+
+animation:fadeDown 1s ease forwards;
+
+}
+
+
+
+.nav a{
+
+text-decoration:none;
+
+color:#241F1F;
+
+font-size:.95rem;
+
+letter-spacing:.08em;
+
+position:relative;
+
+transition:.3s;
+
+}
+
+
+
+.nav a::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-8px;
+
+left:0;
+
+width:0;
+
+height:2px;
+
+background:#241F1F;
+
+transition:.35s;
+
+}
+
+
+
+.nav a:hover::after{
+
+width:100%;
+
+}
+
+
+
+
+
+/* =====================
+TITULO
+===================== */
+
+
+.title{
+
+margin-top:150px;
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:clamp(4rem,8vw,7rem);
+
+font-weight:500;
+
+letter-spacing:.04em;
+
+opacity:0;
+
+animation:fadeUp 1.2s ease .3s forwards;
+
+}
+
+
+
+
+
+/* =====================
+BLOQUE PRINCIPAL
+===================== */
+
+
+.presentation{
+
+
+margin-top:35px;
+
+width:70%;
+
+display:flex;
 
 align-items:center;
 
+justify-content:center;
 
-text-align:center;
+gap:45px;
+
+opacity:0;
+
+animation:fadeUp 1.2s ease .6s forwards;
+
+}
 
 
-background:white;
 
+/* Imagen */
+
+
+.presentation img{
+
+
+width:280px;
+
+height:350px;
+
+object-fit:cover;
+
+display:block;
+
+animation:imageMove 12s ease-in-out infinite alternate;
 
 }
 
@@ -74,210 +215,51 @@ background:white;
 /* Nombre */
 
 
-h1{
+.name{
 
 
 font-family:'Cormorant Garamond',serif;
 
-
-font-size:clamp(2rem,3.5vw,3.2rem);
-
+font-size:clamp(2rem,3vw,3.5rem);
 
 font-weight:500;
 
-
-letter-spacing:.02em;
-
-
-white-space:nowrap;
-
-
-opacity:0;
-
-
-animation:fadeDown 1.2s ease forwards;
-
+max-width:400px;
 
 }
 
 
 
 
-/* Linaum */
+
+/* =====================
+LINAUM
+===================== */
 
 
 .alias{
 
 
-margin-top:8px;
+position:absolute;
+
+bottom:45px;
 
 
-font-size:.85rem;
+font-size:1rem;
 
-
-letter-spacing:.35em;
-
+letter-spacing:.45em;
 
 text-transform:uppercase;
 
-
-color:#252321;
-
-
-opacity:0;
-
-
-animation:fadeDown 1.2s ease .35s forwards;
-
-
-}
-
-
-
-/* =====================
-MENU
-===================== */
-
-
-.nav{
-
-
-margin-top:32px;
-
-
-display:flex;
-
-
-gap:55px;
+color:#241F1F;
 
 
 opacity:0;
 
-
-animation:fadeDown 1.2s ease .7s forwards;
-
-
-}
-
-
-
-.nav a{
-
-
-position:relative;
-
-
-text-decoration:none;
-
-
-color:#202020;
-
-
-font-size:.9rem;
-
-
-letter-spacing:.08em;
-
-
-transition:.35s;
+animation:fadeUp 1.2s ease 1s forwards;
 
 
 }
-
-
-
-.nav a::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-left:0;
-
-
-bottom:-7px;
-
-
-width:0;
-
-
-height:2px;
-
-
-background:#B95D3F;
-
-
-transition:.35s ease;
-
-
-}
-
-
-
-.nav a:hover{
-
-
-color:#B95D3F;
-
-
-}
-
-
-.nav a:hover::after{
-
-
-width:100%;
-
-
-}
-
-
-
-
-/* =====================
-IMAGEN
-===================== */
-
-
-.hero-image{
-
-
-width:100%;
-
-
-height:66vh;
-
-
-overflow:hidden;
-
-
-}
-
-
-
-.hero-image img{
-
-
-width:100%;
-
-
-height:100%;
-
-
-object-fit:cover;
-
-
-display:block;
-
-
-animation:slowZoom 18s ease-in-out infinite alternate;
-
-
-}
-
 
 
 
@@ -286,28 +268,24 @@ ANIMACIONES
 ===================== */
 
 
-@keyframes fadeDown{
+@keyframes fadeUp{
 
 
 from{
 
-
 opacity:0;
 
-transform:translateY(-20px);
-
+transform:translateY(30px);
 
 }
 
 
 to{
-
 
 opacity:1;
 
 transform:translateY(0);
 
-
 }
 
 
@@ -315,27 +293,44 @@ transform:translateY(0);
 
 
 
-/* Movimiento lento imagen */
-
-
-@keyframes slowZoom{
+@keyframes fadeDown{
 
 
 from{
 
+opacity:0;
 
-transform:scale(1);
+transform:translateY(-20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
 
 
 }
 
 
 
+@keyframes imageMove{
+
+
+from{
+
+transform:scale(1);
+
+}
+
+
 to{
 
-
 transform:scale(1.03);
-
 
 }
 
@@ -353,75 +348,69 @@ CELULAR
 @media(max-width:700px){
 
 
-.header{
-
-
-height:38vh;
-
-
-}
-
-
-
-h1{
-
-
-font-size:2rem;
-
-
-white-space:normal;
-
-
-padding:0 20px;
-
-
-}
-
-
-
 .nav{
 
+gap:18px;
 
-gap:20px;
-
+top:25px;
 
 flex-wrap:wrap;
 
-
 justify-content:center;
-
 
 padding:0 20px;
 
+}
+
+
+
+.title{
+
+margin-top:130px;
+
+font-size:4rem;
 
 }
 
 
 
-.nav a{
+.presentation{
+
+width:90%;
+
+flex-direction:column;
+
+gap:25px;
+
+}
 
 
-font-size:.8rem;
 
+.presentation img{
+
+width:220px;
+
+height:280px;
 
 }
 
 
 
-.hero-image{
+.name{
 
+text-align:center;
 
-height:62vh;
+font-size:2rem;
+
+}
+
 
 
 }
 
-
-}
 
 
 </style>
-
 
 </head>
 
@@ -431,18 +420,7 @@ height:62vh;
 
 
 
-<header class="header">
-
-
-<h1>
-Catalina Ulloa Mujica
-</h1>
-
-
-
-<p class="alias">
-Linaum
-</p>
+<main class="portfolio">
 
 
 
@@ -462,21 +440,48 @@ Linaum
 
 
 
-</header>
+
+<h1 class="title">
+
+PORTAFOLIO
+
+</h1>
 
 
 
-<section class="hero-image">
+
+<section class="presentation">
 
 
-<img src="portada.jpg" alt="Obra de Catalina Ulloa Mujica">
+<img src="portada.png" alt="Portada Catalina Ulloa Mujica">
+
+
+
+<h2 class="name">
+
+Catalina Ulloa Mujica
+
+</h2>
+
 
 
 </section>
 
 
 
-</body>
 
+<p class="alias">
+
+Linaum
+
+</p>
+
+
+
+</main>
+
+
+
+</body>
 
 </html>
