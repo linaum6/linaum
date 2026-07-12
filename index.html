@@ -15,6 +15,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
+
 <style>
 
 /* ===========================
@@ -27,31 +28,41 @@ padding:0;
 box-sizing:border-box;
 }
 
+
 html{
 scroll-behavior:smooth;
 }
 
+
 body{
 
 background:#F5F2EC;
+
 font-family:'Manrope',sans-serif;
+
 overflow:hidden;
 
 }
+
 
 
 /* ===========================
 PORTADA
 =========================== */
 
+
 .hero{
 
 position:relative;
+
 width:100%;
+
 height:100vh;
+
 overflow:hidden;
 
 }
+
 
 
 /* Imagen */
@@ -59,17 +70,19 @@ overflow:hidden;
 .hero img{
 
 position:absolute;
+
 top:0;
+
 left:0;
 
 width:100%;
+
 height:100%;
 
 object-fit:cover;
 
-animation:zoom 18s ease-in-out infinite alternate;
-
 }
+
 
 
 /* Capa de luz */
@@ -77,268 +90,389 @@ animation:zoom 18s ease-in-out infinite alternate;
 .overlay{
 
 position:absolute;
+
 inset:0;
+
+
+/* Mantiene lectura sin quitar protagonismo a la imagen */
 
 background:
 
 linear-gradient(
-rgba(245,242,236,.18),
-rgba(245,242,236,.25)
+rgba(245,242,236,.12),
+rgba(245,242,236,.22)
 ),
 
 radial-gradient(
 circle,
-rgba(255,255,255,.05),
+rgba(255,255,255,.04),
 rgba(0,0,0,.18)
 );
+
 
 z-index:1;
 
 }
 
 
-/* Contenedor */
+
+/* Contenido */
+
 
 .menu{
 
 position:relative;
+
 z-index:2;
 
+
 width:100%;
+
 height:100vh;
 
+
 display:flex;
+
 flex-direction:column;
 
+
 justify-content:center;
+
 align-items:center;
+
 
 transform:translateY(-35px);
 
 }
 
 
+
 /* Nombre */
+
 
 h1{
 
+
 font-family:'Cormorant Garamond',serif;
+
 
 font-size:clamp(3rem,6vw,6rem);
 
+
 font-weight:500;
+
 
 letter-spacing:.03em;
 
+
 color:#202020;
+
 
 text-align:center;
 
+
 opacity:0;
+
 
 animation:fadeUp 1.2s ease forwards;
 
+
 }
+
 
 
 /* Alias */
 
+
 .alias{
+
 
 margin-top:10px;
 
+
 font-size:.85rem;
+
 
 letter-spacing:.45em;
 
+
 text-transform:uppercase;
+
 
 color:#5c5c5c;
 
+
 opacity:0;
+
 
 animation:fadeUp 1.2s ease .4s forwards;
 
+
 }
+
 
 
 /* Navegación */
 
+
 .nav{
+
 
 margin-top:55px;
 
+
 display:flex;
+
 
 gap:55px;
 
+
 opacity:0;
+
 
 animation:fadeUp 1.2s ease .8s forwards;
 
+
 }
+
 
 
 /* Links */
 
+
 .nav a{
+
 
 position:relative;
 
+
 text-decoration:none;
+
 
 font-size:.95rem;
 
+
 color:#202020;
+
 
 letter-spacing:.08em;
 
+
 transition:.35s;
 
+
 }
+
 
 
 /* Línea terracota */
 
+
 .nav a::after{
+
 
 content:"";
 
+
 position:absolute;
 
+
 left:0;
+
+
 bottom:-7px;
+
 
 width:0;
 
+
 height:2px;
+
 
 background:#B95D3F;
 
+
 transition:.35s ease;
 
+
 }
+
+
 
 .nav a:hover{
 
+
 color:#B95D3F;
 
+
 }
+
+
 
 .nav a:hover::after{
 
+
 width:100%;
+
 
 }
 
 
+
+
 /* ===========================
-ANIMACIONES
+ANIMACIÓN TEXTO
 =========================== */
+
 
 @keyframes fadeUp{
 
+
 from{
+
 
 opacity:0;
+
 transform:translateY(25px);
 
+
 }
 
+
 to{
+
 
 opacity:1;
+
 transform:translateY(0);
 
-}
 
 }
 
 
-@keyframes zoom{
-
-from{
-
-transform:scale(1);
-
 }
 
-to{
 
-transform:scale(1.05);
-
-}
-
-}
 
 
 /* ===========================
-RESPONSIVE
+TABLET
 =========================== */
+
 
 @media(max-width:900px){
 
+
 .nav{
 
-gap:28px;
-flex-wrap:wrap;
-justify-content:center;
+
+gap:30px;
+
 
 }
 
+
 }
+
+
+
+
+/* ===========================
+CELULAR
+=========================== */
 
 
 @media(max-width:700px){
 
+
 .menu{
 
+
 padding:25px;
+
+
 transform:none;
 
+
 }
+
+
 
 h1{
 
+
 font-size:2.8rem;
 
+
 }
+
+
 
 .alias{
 
+
 font-size:.75rem;
 
+
 }
+
+
 
 .nav{
 
+
 gap:18px;
+
 
 margin-top:40px;
 
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+
 }
+
+
 
 .nav a{
 
+
 font-size:.9rem;
 
-}
 
 }
+
+
+
+}
+
 
 </style>
 
+
 </head>
+
+
 
 <body>
 
+
 <section class="hero">
 
-<img src="portada.jpg" alt="Portada">
+
+<img src="portada.jpg" alt="Obra de Catalina Ulloa Mujica">
+
+
 
 <div class="overlay"></div>
 
+
+
 <div class="menu">
+
+
 
 <h1>
 
@@ -347,28 +481,44 @@ Ulloa Mujica
 
 </h1>
 
+
+
 <p class="alias">
 
 Linaum
 
 </p>
 
+
+
+
 <div class="nav">
+
 
 <a href="obras.html">Obras</a>
 
+
 <a href="exposiciones.html">Exposiciones</a>
+
 
 <a href="estudios.html">Estudios</a>
 
+
 <a href="artista.html">Artista</a>
 
-</div>
 
 </div>
+
+
+
+</div>
+
+
 
 </section>
 
+
 </body>
+
 
 </html>
