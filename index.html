@@ -8,23 +8,41 @@
 
 <title>Catalina Ulloa Mujica</title>
 
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
-
 <style>
 
+/* =====================
+FUENTES PERSONALIZADAS
+===================== */
+
+@font-face{
+    font-family:"Signature December";
+    src:url("Signature December.otf") format("opentype");
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:"Autography";
+    src:url("Autography.otf") format("opentype");
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+/* =====================
+RESET
+===================== */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
-
-
 
 body{
 
@@ -41,214 +59,149 @@ overflow:hidden;
 }
 
 
-
 /* =====================
 CABECERA
 ===================== */
 
-
 .header{
 
-
 height:32vh;
-
 
 display:flex;
 
 flex-direction:column;
 
-
 justify-content:center;
-
 
 align-items:center;
 
-
 text-align:center;
-
 
 background:white;
 
-
 }
 
 
-
-
-/* Nombre */
-
+/* =====================
+NOMBRE
+===================== */
 
 h1{
 
+font-family:"Signature December", serif;
 
-font-family:'Cormorant Garamond',serif;
+font-size:clamp(3rem,5vw,5rem);
 
+font-weight:normal;
 
-font-size:clamp(2rem,3.5vw,3.2rem);
-
-
-font-weight:500;
-
-
-letter-spacing:.02em;
-
+letter-spacing:0;
 
 white-space:nowrap;
 
-
 opacity:0;
-
 
 animation:fadeDown 1.2s ease forwards;
 
-
 }
 
 
-
-
-
-/* Linaum */
-
+/* =====================
+LINAUM
+===================== */
 
 .alias{
 
-
 margin-top:8px;
 
+font-family:"Autography", cursive;
 
-font-size:.85rem;
+font-size:2rem;
 
+font-weight:normal;
 
-letter-spacing:.35em;
+letter-spacing:0;
 
-
-text-transform:uppercase;
-
+text-transform:none;
 
 color:#252321;
 
-
 opacity:0;
-
 
 animation:fadeDown 1.2s ease .35s forwards;
 
-
 }
-
-
 
 
 /* =====================
 MENU
 ===================== */
 
-
 .nav{
-
 
 margin-top:30px;
 
-
 display:flex;
-
 
 gap:55px;
 
-
 opacity:0;
-
 
 animation:fadeDown 1.2s ease .7s forwards;
 
-
 }
-
-
 
 .nav a{
 
-
 position:relative;
-
 
 text-decoration:none;
 
-
 color:#202020;
-
 
 font-size:.9rem;
 
-
 letter-spacing:.08em;
-
 
 transition:.3s;
 
-
 }
-
-
-
 
 .nav a::after{
 
-
 content:"";
-
 
 position:absolute;
 
-
 left:0;
-
 
 bottom:-7px;
 
-
 width:0;
-
 
 height:2px;
 
-
 background:#B95D3F;
-
 
 transition:.35s ease;
 
-
 }
-
-
 
 .nav a:hover{
 
-
 color:#B95D3F;
 
-
 }
-
-
 
 .nav a:hover::after{
 
-
 width:100%;
 
-
 }
-
-
 
 
 /* =====================
 IMAGEN
 ===================== */
-
 
 .hero-image{
 
@@ -266,137 +219,99 @@ margin-top:-18px;
 
 }
 
-
-
 .hero-image img{
-
 
 width:100%;
 
-
 height:100%;
-
 
 object-fit:cover;
 
-
 display:block;
-
 
 opacity:0;
 
-
 transform:translateY(30px);
-
 
 animation:fadeImage 1.4s ease 1s forwards;
 
-
 }
-
-
 
 
 /* =====================
 ANIMACIONES
 ===================== */
 
-
 @keyframes fadeDown{
 
-
 from{
-
 
 opacity:0;
 
 transform:translateY(-20px);
 
-
 }
 
-
 to{
-
 
 opacity:1;
 
 transform:translateY(0);
 
-
 }
 
-
 }
-
-
 
 @keyframes fadeImage{
 
-
 from{
-
 
 opacity:0;
 
 transform:translateY(30px);
 
-
 }
 
-
-
 to{
-
 
 opacity:1;
 
 transform:translateY(0);
 
-
 }
 
-
 }
-
-
-
 
 
 /* =====================
 CELULAR
 ===================== */
 
-
 @media(max-width:700px){
-
 
 .header{
 
-
 height:36vh;
-
 
 }
 
-
-
 h1{
 
-
-font-size:2rem;
+font-size:3rem;
 
 white-space:normal;
 
 padding:0 20px;
 
+}
+
+.alias{
+
+font-size:1.6rem;
 
 }
 
-
-
 .nav{
-
 
 gap:18px;
 
@@ -406,61 +321,39 @@ justify-content:center;
 
 padding:0 20px;
 
-
 }
-
-
 
 .nav a{
 
-
 font-size:.8rem;
 
-
 }
-
-
 
 .hero-image{
 
-
 height:64vh;
 
-
 }
 
-
 }
-
 
 </style>
 
-
 </head>
-
-
 
 <body>
 
-
-
 <header class="header">
-
 
 <h1>
 Catalina Ulloa Mujica
 </h1>
 
-
-
 <p class="alias">
 Linaum
 </p>
 
-
-
 <nav class="nav">
-
 
 <a href="obras.html">Obras</a>
 
@@ -470,26 +363,15 @@ Linaum
 
 <a href="artista.html">Artista</a>
 
-
 </nav>
-
-
 
 </header>
 
-
-
-
 <section class="hero-image">
-
 
 <img src="portada.jpg" alt="Obra de Catalina Ulloa Mujica">
 
-
 </section>
 
-
-
 </body>
-
 </html>
