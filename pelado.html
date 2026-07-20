@@ -133,9 +133,17 @@ FICHA + PORTADA + DESCRIPCIÓN
     width:min(1500px,94%);
     margin:20px auto 0;
     display:grid;
-    grid-template-columns:1.3fr 0.85fr 0.85fr;
-    gap:45px;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
     align-items:end;
+
+}
+
+.info-lateral{
+
+    display:flex;
+    flex-direction:column;
+    gap:28px;
 
 }
 
@@ -190,6 +198,7 @@ FICHA + PORTADA + DESCRIPCIÓN
 .portada-obra img{
 
     width:100%;
+    max-width:420px;
     display:block;
     object-fit:cover;
 
@@ -203,7 +212,7 @@ FICHA + PORTADA + DESCRIPCIÓN
 
 .descripcion-breve p{
 
-    font-size:.9rem;
+    font-size:1.05rem;
     font-weight:300;
     line-height:1.75;
     color:#202020;
@@ -220,8 +229,8 @@ GALERÍA SECUNDARIA
     margin:70px auto 0;
     padding-bottom:60px;
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:40px 30px;
+    grid-template-columns:repeat(4,1fr);
+    gap:36px 24px;
 
 }
 
@@ -370,7 +379,7 @@ RESPONSIVE
 }
 
 .galeria-obra{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
 }
 
 }
@@ -425,7 +434,7 @@ RESPONSIVE
 </header>
 
 <!-- ============================================================
-     IMAGEN DE PORTADA + FICHA TÉCNICA + DESCRIPCIÓN BREVE
+     IMAGEN DE PORTADA + DESCRIPCIÓN + FICHA TÉCNICA
 ============================================================ -->
 <section class="obra-header">
 
@@ -433,45 +442,50 @@ RESPONSIVE
         <img src="pelado5.jpg" alt="Pelado">
     </div>
 
-    <div class="ficha-tecnica">
+    <div class="info-lateral">
 
-        <p class="obra-titulo">Pelado</p>
+        <div class="descripcion-breve">
+            <p>
+                Primer intento de representación de un rostro en arcilla. Nace del interés por el estudio de anatomía.
+                Momento de experimentación con el material y comienzo de obras a mayor tamaño.
+                
+            </p>
+        </div>
 
-        <dl>
-            <dt>Año</dt>
-            <dd>2024</dd>
+        <div class="ficha-tecnica">
 
-            <dt>Técnica</dt>
-            <dd>Escultura en arcilla</dd>
+            <p class="obra-titulo">Pelado</p>
 
-            <dt>Medidas</dt>
-            <dd>10 x 15cm</dd>
+            <dl>
+                <dt>Año</dt>
+                <dd>2024</dd>
 
-        
-        </dl>
+                <dt>Técnica</dt>
+                <dd>Escultura en arcilla</dd>
 
-    </div>
+                <dt>Medidas</dt>
+                <dd>10 × 15cm</dd>
 
-    <div class="descripcion-breve">
-        <p>
-           Primer intento de representación de un rostro en arcilla. Nace del interés por el estudio de anatomía. 
-        Momento de experimentación con el material y el comienzo de obras de mayor tamaño.
-        </p>
+            
+            </dl>
+
+        </div>
+
     </div>
 
 </section>
 
 <!-- ============================================================
-     GALERÍA DE LA OBRA 
+     GALERÍA DE LA OBRA (6 imágenes, sin contar la portada)
 ============================================================ -->
 <section class="galeria-obra" id="galeriaObra">
 
-    <button class="foto-obra"><img src="pelado.jpg" alt="Pelado - detalle 1"></button>
-    <button class="foto-obra"><img src="pelado1.jpg" alt="Pelado - detalle 2"></button>
-    <button class="foto-obra"><img src="pelado2.jpg" alt="Pelado - detalle 3"></button>
-    <button class="foto-obra"><img src="pelado3.jpg" alt="Pelado - detalle 4"></button>
-    <button class="foto-obra"><img src="pelado4.jpg" alt="Pelado - detalle 5"></button>
-    <button class="foto-obra"><img src="pelado6.jpg" alt="Pelado - detalle 6"></button>
+    <button type="button" class="foto-obra"><img src="pelado.jpg" alt="Pelado - detalle 1"></button>
+    <button type="button" class="foto-obra"><img src="pelado1.jpg" alt="Pelado - detalle 2"></button>
+    <button type="button" class="foto-obra"><img src="pelado2.jpg" alt="Pelado - detalle 3"></button>
+    <button type="button" class="foto-obra"><img src="pelado3.jpg" alt="Pelado - detalle 4"></button>
+    <button type="button" class="foto-obra"><img src="pelado4.jpg" alt="Pelado - detalle 5"></button>
+    <button type="button" class="foto-obra"><img src="pelado6.jpg" alt="Pelado - detalle 6"></button>
 
 </section>
 
@@ -491,4 +505,62 @@ RESPONSIVE
 </footer>
 
 <script>
-/*
+/* ============================================================
+   LIGHTBOX: click, flechas en pantalla y teclado (← → y Esc)
+============================================================ */
+const botonesFoto = Array.from(document.querySelectorAll('#galeriaObra .foto-obra'));
+const fotos = botonesFoto.map(b => b.querySelector('img'));
+const lightbox = document.getElementById('lightbox');
+const lbImagen = document.getElementById('lbImagen');
+const lbContador = document.getElementById('lbContador');
+let indiceActual = 0;
+
+function abrirLightbox(i){
+    indiceActual = i;
+    mostrarFoto();
+    lightbox.classList.add('abierto');
+}
+
+function mostrarFoto(){
+    lbImagen.src = fotos[indiceActual].src;
+    lbImagen.alt = fotos[indiceActual].alt;
+    lbContador.textContent = (indiceActual + 1) + " / " + fotos.length;
+}
+
+function cerrarLightbox(){
+    lightbox.classList.remove('abierto');
+}
+
+function anterior(){
+    indiceActual = (indiceActual - 1 + fotos.length) % fotos.length;
+    mostrarFoto();
+}
+
+function siguiente(){
+    indiceActual = (indiceActual + 1) % fotos.length;
+    mostrarFoto();
+}
+
+botonesFoto.forEach((boton, i) => {
+    boton.addEventListener('click', () => abrirLightbox(i));
+});
+
+document.getElementById('lbCerrar').addEventListener('click', cerrarLightbox);
+document.getElementById('lbPrev').addEventListener('click', anterior);
+document.getElementById('lbNext').addEventListener('click', siguiente);
+
+lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) cerrarLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+    if(!lightbox.classList.contains('abierto')) return;
+    if(e.key === 'Escape') cerrarLightbox();
+    if(e.key === 'ArrowLeft') anterior();
+    if(e.key === 'ArrowRight') siguiente();
+});
+</script>
+
+</body>
+
+</html>
