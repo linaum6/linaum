@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,9 +29,11 @@ box-sizing:border-box;
 }
 
 body{
+
 background:white;
 font-family:'Manrope',sans-serif;
 color:#202020;
+
 }
 
 /*=========================
@@ -40,74 +41,112 @@ MENÚ
 =========================*/
 
 header{
+
 padding:40px 0 30px;
+
 display:flex;
+
 justify-content:center;
+
 }
 
 .nav{
+
 display:flex;
+
 gap:55px;
+
 }
 
 .nav a,
 .nav span{
+
 position:relative;
+
 text-decoration:none;
+
 color:#202020;
+
 font-size:.9rem;
+
 letter-spacing:.08em;
+
 transition:.3s;
+
 }
 
 .nav a::after,
 .nav span::after{
+
 content:"";
+
 position:absolute;
+
 left:0;
+
 bottom:-7px;
+
 width:0;
+
 height:2px;
+
 background:#B95D3F;
+
 transition:.35s;
+
 }
 
 .nav a:hover{
+
 color:#B95D3F;
+
 }
 
 .nav a:hover::after{
+
 width:100%;
+
 }
 
 .nav .active{
+
 color:#B95D3F;
+
 font-weight:800;
+
 cursor:default;
+
 }
 
 .nav .active::after{
+
 width:100%;
+
 }
 
 /*=========================
-FICHA + PORTADA
+FICHA + PORTADA + DESCRIPCIÓN
 =========================*/
 
 .obra-header{
-    width:min(1400px,92%);
+
+    width:min(1500px,94%);
     margin:20px auto 0;
     display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:60px;
-    align-items:start;
+    grid-template-columns:1.3fr 0.85fr 0.85fr;
+    gap:45px;
+    align-items:end;
+
 }
 
 .ficha-tecnica{
-    padding-top:20px;
+
+    padding-bottom:4px;
+
 }
 
 .ficha-tecnica .obra-titulo{
+
     font-family:"Sineas", serif;
     font-style:italic;
     font-weight:bold;
@@ -115,16 +154,20 @@ FICHA + PORTADA
     line-height:1.2;
     margin-bottom:28px;
     color:#202020;
+
 }
 
 .ficha-tecnica dl{
+
     display:grid;
     grid-template-columns:auto 1fr;
     row-gap:14px;
     column-gap:18px;
+
 }
 
 .ficha-tecnica dt{
+
     font-size:.72rem;
     letter-spacing:.12em;
     text-transform:uppercase;
@@ -132,42 +175,39 @@ FICHA + PORTADA
     font-weight:600;
     white-space:nowrap;
     padding-top:2px;
+
 }
 
 .ficha-tecnica dd{
+
     font-size:.95rem;
     font-weight:400;
     color:#202020;
     line-height:1.5;
-}
 
-.portada-obra{
-    display:flex;
-    justify-content:flex-end;
 }
 
 .portada-obra img{
+
     width:100%;
-    max-width:380px;
     display:block;
     object-fit:cover;
+
 }
 
-/*=========================
-DESCRIPCIÓN
-=========================*/
+.descripcion-breve{
 
-.descripcion{
-    width:min(900px,88%);
-    margin:70px auto 0;
+    padding-bottom:4px;
+
 }
 
-.descripcion p{
-    font-size:1rem;
+.descripcion-breve p{
+
+    font-size:.9rem;
     font-weight:300;
-    line-height:1.85;
+    line-height:1.75;
     color:#202020;
-    text-align:center;
+
 }
 
 /*=========================
@@ -175,33 +215,41 @@ GALERÍA SECUNDARIA
 =========================*/
 
 .galeria-obra{
+
     width:min(1400px,92%);
     margin:70px auto 0;
     padding-bottom:60px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:40px 30px;
+
 }
 
 .foto-obra{
+
     border:none;
     background:none;
     padding:0;
     cursor:pointer;
     display:block;
+
 }
 
 .foto-obra img{
+
     width:100%;
     aspect-ratio:3/2;
     object-fit:cover;
     display:block;
     transition:.35s ease;
+
 }
 
 .foto-obra:hover img{
+
     transform:scale(1.04);
     box-shadow:0 12px 30px rgba(0,0,0,.18);
+
 }
 
 /*=========================
@@ -209,6 +257,7 @@ LIGHTBOX
 =========================*/
 
 .lightbox{
+
     position:fixed;
     inset:0;
     background:rgba(20,20,20,.94);
@@ -219,21 +268,27 @@ LIGHTBOX
     pointer-events:none;
     transition:opacity .3s ease;
     z-index:100;
+
 }
 
 .lightbox.abierto{
+
     opacity:1;
     pointer-events:auto;
+
 }
 
 .lightbox img{
+
     max-width:82vw;
     max-height:82vh;
     object-fit:contain;
     display:block;
+
 }
 
 .lb-cerrar{
+
     position:absolute;
     top:28px;
     right:36px;
@@ -246,11 +301,13 @@ LIGHTBOX
     opacity:.75;
     transition:.25s;
     line-height:1;
+
 }
 
 .lb-cerrar:hover{ opacity:1; }
 
 .lb-flecha{
+
     position:absolute;
     top:50%;
     transform:translateY(-50%);
@@ -264,6 +321,7 @@ LIGHTBOX
     padding:20px;
     transition:.25s;
     line-height:1;
+
 }
 
 .lb-flecha:hover{ opacity:1; }
@@ -272,6 +330,7 @@ LIGHTBOX
 .lb-next{ right:10px; }
 
 .lb-contador{
+
     position:absolute;
     bottom:26px;
     left:50%;
@@ -280,6 +339,7 @@ LIGHTBOX
     font-size:.72rem;
     letter-spacing:.12em;
     text-transform:uppercase;
+
 }
 
 /*=========================
@@ -287,6 +347,7 @@ FOOTER
 =========================*/
 
 footer{
+
     width:100%;
     text-align:center;
     padding:70px 20px 35px;
@@ -294,6 +355,7 @@ footer{
     font-weight:300;
     letter-spacing:.12em;
     color:#B8B8B8;
+
 }
 
 /*=========================
@@ -363,10 +425,13 @@ RESPONSIVE
 </header>
 
 <!-- ============================================================
-     FICHA TÉCNICA + IMAGEN DE PORTADA
-     Reemplaza los valores de la ficha con los datos reales.
+     IMAGEN DE PORTADA + FICHA TÉCNICA + DESCRIPCIÓN BREVE
 ============================================================ -->
 <section class="obra-header">
+
+    <div class="portada-obra">
+        <img src="pelado5.jpg" alt="Pelado">
+    </div>
 
     <div class="ficha-tecnica">
 
@@ -377,34 +442,27 @@ RESPONSIVE
             <dd>2024</dd>
 
             <dt>Técnica</dt>
-            <dd>Arcilla</dd>
+            <dd>Escultura en arcilla</dd>
 
             <dt>Medidas</dt>
-            <dd>10 × 15 cm</dd>
+            <dd>10 x 15cm</dd>
 
+        
         </dl>
 
     </div>
 
-    <div class="portada-obra">
-        <img src="pelado5.jpg" alt="Pelado">
+    <div class="descripcion-breve">
+        <p>
+           Primer intento de representación de un rostro en arcilla. Nace del interés por el estudio de anatomía. 
+        Momento de experimentación con el material y el comienzo de obras de mayor tamaño.
+        </p>
     </div>
 
 </section>
 
 <!-- ============================================================
-     DESCRIPCIÓN
-
-============================================================ -->
-<section class="descripcion">
-    <p>
-      Primer intento de representación de un rostro en arcilla. Nace del interés por el estudio de anatomía. 
-      Fue un momento de experimentación con el material y el comienzo de obras de un mayor tamaño.
-    </p>
-</section>
-
-<!-- ============================================================
-     GALERÍA DE LA OBRA
+     GALERÍA DE LA OBRA 
 ============================================================ -->
 <section class="galeria-obra" id="galeriaObra">
 
@@ -413,7 +471,7 @@ RESPONSIVE
     <button class="foto-obra"><img src="pelado2.jpg" alt="Pelado - detalle 3"></button>
     <button class="foto-obra"><img src="pelado3.jpg" alt="Pelado - detalle 4"></button>
     <button class="foto-obra"><img src="pelado4.jpg" alt="Pelado - detalle 5"></button>
-    <button class="foto-obra"><img src="pelado5.jpg" alt="Pelado - detalle 6"></button>
+    <button class="foto-obra"><img src="pelado6.jpg" alt="Pelado - detalle 6"></button>
 
 </section>
 
@@ -433,61 +491,4 @@ RESPONSIVE
 </footer>
 
 <script>
-/* ============================================================
-   LIGHTBOX: click, flechas en pantalla y teclado (← → y Esc)
-============================================================ */
-const fotos = Array.from(document.querySelectorAll('#galeriaObra .foto-obra img'));
-const lightbox = document.getElementById('lightbox');
-const lbImagen = document.getElementById('lbImagen');
-const lbContador = document.getElementById('lbContador');
-let indiceActual = 0;
-
-function abrirLightbox(i){
-    indiceActual = i;
-    mostrarFoto();
-    lightbox.classList.add('abierto');
-}
-
-function mostrarFoto(){
-    lbImagen.src = fotos[indiceActual].src;
-    lbImagen.alt = fotos[indiceActual].alt;
-    lbContador.textContent = (indiceActual + 1) + " / " + fotos.length;
-}
-
-function cerrarLightbox(){
-    lightbox.classList.remove('abierto');
-}
-
-function anterior(){
-    indiceActual = (indiceActual - 1 + fotos.length) % fotos.length;
-    mostrarFoto();
-}
-
-function siguiente(){
-    indiceActual = (indiceActual + 1) % fotos.length;
-    mostrarFoto();
-}
-
-fotos.forEach((img, i) => {
-    img.closest('.foto-obra').addEventListener('click', () => abrirLightbox(i));
-});
-
-document.getElementById('lbCerrar').addEventListener('click', cerrarLightbox);
-document.getElementById('lbPrev').addEventListener('click', anterior);
-document.getElementById('lbNext').addEventListener('click', siguiente);
-
-lightbox.addEventListener('click', (e) => {
-    if(e.target === lightbox) cerrarLightbox();
-});
-
-document.addEventListener('keydown', (e) => {
-    if(!lightbox.classList.contains('abierto')) return;
-    if(e.key === 'Escape') cerrarLightbox();
-    if(e.key === 'ArrowLeft') anterior();
-    if(e.key === 'ArrowRight') siguiente();
-});
-</script>
-
-</body>
-
-</html>
+/*
