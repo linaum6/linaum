@@ -1,1 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Escape | linaum</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+@font-face {
+    font-family: "Sineas";
+    src: url("Sineas.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:white;
+font-family:'Manrope',sans-serif;
+color:#202020;
+
+}
+
+/*=========================
+MENÚ
+=========================*/
+
+header{
+
+padding:40px 0 30px;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.nav{
+
+display:flex;
+
+gap:55px;
+
+}
+
+.nav a,
+.nav span{
+
+position:relative;
+
+text-decoration:none;
+
+color:#202020;
+
+font-size:.9rem;
+
+letter-spacing:.08em;
+
+transition:.3s;
+
+}
+
+.nav a::after,
+.nav span::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-7px;
+
+width:0;
+
+height:2px;
+
+background:#B95D3F;
+
+transition:.35s;
+
+}
+
+.nav a:hover{
+
+color:#B95D3F;
+
+}
+
+.nav a:hover::after{
+
+width:100%;
+
+}
+
+.nav .active{
+
+color:#B95D3F;
+
+font-weight:800;
+
+cursor:default;
+
+}
+
+.nav .active::after{
+
+width:100%;
+
+}
+
+/*=========================
+FICHA + PORTADA + DESCRIPCIÓN
+=========================*/
+
+.obra-header{
+
+    width:min(1500px,94%);
+    margin:20px auto 0;
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:24px;
+    align-items:stretch;
+
+}
+
+.info-lateral{
+
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+
+}
+
+.descripcion-breve{
+
+    margin-top:100px;
+
+}
+
+.ficha-tecnica{
+
+    padding-bottom:4px;
+    margin-top:auto;
+
+}
+
+.ficha-tecnica .obra-titulo{
+
+    font-family:"Sineas", serif;
+    font-style:italic;
+    font-weight:bold;
+    font-size:2.4rem;
+    line-height:1.2;
+    margin-bottom:28px;
+    color:#202020;
+
+}
+
+.ficha-tecnica dl{
+
+    display:grid;
+    grid-template-columns:auto 1fr;
+    row-gap:14px;
+    column-gap:18px;
+
+}
+
+.ficha-tecnica dt{
+
+    font-size:.82rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#B8B8B8;
+    font-weight:600;
+    white-space:nowrap;
+    padding-top:2px;
+
+}
+
+.ficha-tecnica dd{
+
+    font-size:1.08rem;
+    font-weight:400;
+    color:#202020;
+    line-height:1.5;
+
+}
+
+.portada-obra img{
+
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:cover;
+
+}
+
+.descripcion-breve p{
+
+    font-size:1.18rem;
+    font-weight:300;
+    line-height:1.75;
+    color:#202020;
+
+}
+
+/*=========================
+GALERÍA SECUNDARIA
+(flexbox, para que la última fila incompleta
+quede centrada en vez de pegada a la izquierda)
+=========================*/
+
+.galeria-obra{
+
+    width:min(1150px,86%);
+    margin:70px auto 0;
+    padding-bottom:60px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:32px 26px;
+
+}
+
+.foto-obra{
+
+    border:none;
+    background:none;
+    padding:0;
+    cursor:pointer;
+    display:block;
+    width:calc((100% - 52px)/3);
+
+}
+
+.foto-obra img{
+
+    width:100%;
+    aspect-ratio:3/2;
+    object-fit:cover;
+    display:block;
+    transition:.35s ease;
+
+}
+
+.foto-obra:hover img{
+
+    transform:scale(1.04);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+}
+
+/*=========================
+LIGHTBOX
+=========================*/
+
+.lightbox{
+
+    position:fixed;
+    inset:0;
+    background:rgba(20,20,20,.94);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:100;
+
+}
+
+.lightbox.abierto{
+
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+.lightbox img{
+
+    max-width:82vw;
+    max-height:82vh;
+    object-fit:contain;
+    display:block;
+
+}
+
+.lb-cerrar{
+
+    position:absolute;
+    top:28px;
+    right:36px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:1.6rem;
+    font-weight:300;
+    cursor:pointer;
+    opacity:.75;
+    transition:.25s;
+    line-height:1;
+
+}
+
+.lb-cerrar:hover{ opacity:1; }
+
+.lb-flecha{
+
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:white;
+    font-size:2.4rem;
+    font-weight:300;
+    cursor:pointer;
+    opacity:.6;
+    padding:20px;
+    transition:.25s;
+    line-height:1;
+
+}
+
+.lb-flecha:hover{ opacity:1; }
+
+.lb-prev{ left:10px; }
+.lb-next{ right:10px; }
+
+.lb-contador{
+
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    transform:translateX(-50%);
+    color:rgba(255,255,255,.55);
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+
+}
+
+/*=========================
+FOOTER
+=========================*/
+
+footer{
+
+    width:100%;
+    text-align:center;
+    padding:70px 20px 35px;
+    font-size:.75rem;
+    font-weight:300;
+    letter-spacing:.12em;
+    color:#B8B8B8;
+
+}
+
+/*=========================
+RESPONSIVE
+=========================*/
+
+@media(max-width:1000px){
+
+.obra-header{
+    grid-template-columns:1fr;
+    gap:35px;
+}
+
+.foto-obra{
+    width:calc((100% - 26px)/2);
+}
+
+}
+
+@media(max-width:650px){
+
+.nav{
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:0 20px;
+}
+
+.ficha-tecnica .obra-titulo{
+    font-size:1.9rem;
+}
+
+.foto-obra{
+    width:100%;
+}
+
+.lb-flecha{
+    font-size:1.8rem;
+    padding:12px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="nav">
+
+<a href="index.html">Inicio</a>
+
+<span class="active">Obras</span>
+
+<a href="exposiciones.html">Exposiciones</a>
+
+<a href="estudios.html">Estudios</a>
+
+<a href="artista.html">Artista</a>
+
+</nav>
+
+</header>
+
+<!-- ============================================================
+     IMAGEN DE PORTADA + DESCRIPCIÓN + FICHA TÉCNICA
+============================================================ -->
+<section class="obra-header">
+
+    <div class="portada-obra">
+        <img src="escape3.jpg" alt="Escape">
+    </div>
+
+    <div class="info-lateral">
+
+        <div class="descripcion-breve">
+            <p>
+               Obra conectada atráves del montaje junto a "Abierto/cerrado". 
+              Avanza con la exploración y el estudio en cuanto al material y las facciones, adentrándose al mundo de mas máscaras de distintas tribus y etnias.
+              Se nota aun aumento en cuanto el tamaño y se integra el color.
+            </p>
+        </div>
+
+        <div class="ficha-tecnica">
+
+            <p class="obra-titulo">Escape</p>
+
+            <dl>
+                <dt>Año</dt>
+                <dd>2025</dd>
+
+                <dt>Técnica</dt>
+                <dd>Escultura en arcilla</dd>
+
+                <dt>Medidas</dt>
+                <dd>50 x 18cm </dd>
+
+            </dl>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ============================================================
+     GALERÍA DE LA OBRA (5 imágenes, sin contar la portada)
+============================================================ -->
+<section class="galeria-obra" id="galeriaObra">
+
+    <button type="button" class="foto-obra"><img src="escape1.jpg" alt="Escape - detalle 1"></button>
+    <button type="button" class="foto-obra"><img src="escape2.jpg" alt="Escape - detalle 2"></button>
+    <button type="button" class="foto-obra"><img src="escape4.jpg" alt="Escape - detalle 3"></button>
+    <button type="button" class="foto-obra"><img src="escape5.jpg" alt="Escape - detalle 4"></button>
+    <button type="button" class="foto-obra"><img src="escape6.jpg" alt="Escape - detalle 5"></button>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lb-cerrar" id="lbCerrar">✕</button>
+    <button class="lb-flecha lb-prev" id="lbPrev">‹</button>
+    <img id="lbImagen" src="" alt="">
+    <button class="lb-flecha lb-next" id="lbNext">›</button>
+    <div class="lb-contador" id="lbContador"></div>
+</div>
+
+<footer>
+
+    Catalina Ulloa Mujica · Artista Visual
+
+</footer>
+
+<script>
+/* ============================================================
+   LIGHTBOX: click, flechas en pantalla y teclado (← → y Esc)
+============================================================ */
+const botonesFoto = Array.from(document.querySelectorAll('#galeriaObra .foto-obra'));
+const fotos = botonesFoto.map(b => b.querySelector('img'));
+const lightbox = document.getElementById('lightbox');
+const lbImagen = document.getElementById('lbImagen');
+const lbContador = document.getElementById('lbContador');
+let indiceActual = 0;
+
+function abrirLightbox(i){
+    indiceActual = i;
+    mostrarFoto();
+    lightbox.classList.add('abierto');
+}
+
+function mostrarFoto(){
+    lbImagen.src = fotos[indiceActual].src;
+    lbImagen.alt = fotos[indiceActual].alt;
+    lbContador.textContent = (indiceActual + 1) + " / " + fotos.length;
+}
+
+function cerrarLightbox(){
+    lightbox.classList.remove('abierto');
+}
+
+function anterior(){
+    indiceActual = (indiceActual - 1 + fotos.length) % fotos.length;
+    mostrarFoto();
+}
+
+function siguiente(){
+    indiceActual = (indiceActual + 1) % fotos.length;
+    mostrarFoto();
+}
+
+botonesFoto.forEach((boton, i) => {
+    boton.addEventListener('click', () => abrirLightbox(i));
+});
+
+document.getElementById('lbCerrar').addEventListener('click', cerrarLightbox);
+document.getElementById('lbPrev').addEventListener('click', anterior);
+document.getElementById('lbNext').addEventListener('click', siguiente);
+
+lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) cerrarLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+    if(!lightbox.classList.contains('abierto')) return;
+    if(e.key === 'Escape') cerrarLightbox();
+    if(e.key === 'ArrowLeft') anterior();
+    if(e.key === 'ArrowRight') siguiente();
+});
+</script>
+
+</body>
+
+</html>
