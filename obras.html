@@ -188,6 +188,25 @@ box-shadow:0 12px 30px rgba(0,0,0,.18);
     line-height:1.5;
     color:#202020;
 }
+
+/*=========================
+ANIMACIÓN DE APARICIÓN
+=========================*/
+
+.obra{
+
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+
+}
+
+.obra.visible{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
     
    /*=========================
 FOOTER
@@ -279,7 +298,7 @@ gap:35px;
 
 </header>
 
-<section class="gallery">
+<section class="gallery" id="gallery">
 
 <a href="#" class="obra">
 <img src="51.jpg" alt="90'20">
@@ -329,6 +348,28 @@ gap:35px;
     Catalina Ulloa Mujica · Artista Visual
 
 </footer>
+
+<script>
+/* ============================================================
+   ANIMACIÓN DE APARICIÓN AL HACER SCROLL
+============================================================ */
+const obras = Array.from(document.querySelectorAll('#gallery .obra'));
+
+obras.forEach((obra, i) => {
+    obra.style.transitionDelay = (i % 4) * 0.08 + "s";
+});
+
+const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+        if(entrada.isIntersecting){
+            entrada.target.classList.add('visible');
+            observador.unobserve(entrada.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+obras.forEach(obra => observador.observe(obra));
+</script>
   
 </body>
 
