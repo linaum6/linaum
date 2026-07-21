@@ -196,8 +196,8 @@ ANIMACIÓN DE APARICIÓN
 .obra{
 
     opacity:0;
-    transform:translateY(28px);
-    transition:opacity .7s ease, transform .7s ease;
+    transform:translateY(36px);
+    transition:opacity 1.3s ease, transform 1.3s ease;
 
 }
 
@@ -356,7 +356,7 @@ gap:35px;
 const obras = Array.from(document.querySelectorAll('#gallery .obra'));
 
 obras.forEach((obra, i) => {
-    obra.style.transitionDelay = (i % 4) * 0.08 + "s";
+    obra.style.transitionDelay = (i % 4) * 0.15 + "s";
 });
 
 const observador = new IntersectionObserver((entradas) => {
