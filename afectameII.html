@@ -229,7 +229,7 @@ FICHA + PORTADA + DESCRIPCIÓN
 .portada-obra img{
 
     width:100%;
-    aspect-ratio:4/5;        /* recorte: más horizontal que la foto original */
+    aspect-ratio:1/1;        /* recorte cuadrado. Más horizontal: 5/4. Menos recorte: 4/5 */
     object-fit:cover;
     object-position:center;  /* cambia a "center top" o "center 30%" para mover el recorte */
     display:block;
@@ -260,7 +260,7 @@ VIDEO (a la derecha de la ficha técnica)
 
     flex:1 1 0;
     min-width:0;
-    max-width:640px;
+    max-width:500px;
     aspect-ratio:16/9;
     background:#202020;
     position:relative;
