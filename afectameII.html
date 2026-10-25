@@ -229,9 +229,10 @@ FICHA + PORTADA + DESCRIPCIÓN
 .portada-obra img{
 
     width:100%;
-    height:auto;
-    display:block;
+    aspect-ratio:4/5;        /* recorte: más horizontal que la foto original */
     object-fit:cover;
+    object-position:center;  /* cambia a "center top" o "center 30%" para mover el recorte */
+    display:block;
 
 }
 
@@ -257,7 +258,9 @@ VIDEO (a la derecha de la ficha técnica)
 
 .video-obra{
 
-    flex:0 0 min(420px,48%);
+    flex:1 1 0;
+    min-width:0;
+    max-width:640px;
     aspect-ratio:16/9;
     background:#202020;
     position:relative;
@@ -338,7 +341,7 @@ VIDEO (a la derecha de la ficha técnica)
 }
 
 /*=========================
-GALERÍA (filas de 5)
+GALERÍA (filas de 4)
 (flexbox, para que la última fila incompleta
 quede centrada en vez de pegada a la izquierda)
 =========================*/
@@ -362,7 +365,7 @@ quede centrada en vez de pegada a la izquierda)
     padding:0;
     cursor:pointer;
     display:block;
-    width:calc((100% - 80px)/5);
+    width:calc((100% - 60px)/4);
 
     /* animación de aparición */
     opacity:0;
@@ -505,14 +508,6 @@ footer{
 RESPONSIVE
 =========================*/
 
-@media(max-width:1200px){
-
-.foto-obra{
-    width:calc((100% - 60px)/4);
-}
-
-}
-
 @media(max-width:1000px){
 
 .obra-header{
@@ -533,10 +528,12 @@ RESPONSIVE
 .video-obra{
     flex:none;
     width:100%;
+    max-width:none;
 }
 
-.foto-obra{
-    width:calc((100% - 40px)/3);
+.portada-obra img{
+    aspect-ratio:auto;
+    height:auto;
 }
 
 }
@@ -632,8 +629,7 @@ RESPONSIVE
 
             </div>
 
-            <!-- Cambia ID_DEL_VIDEO por el ID del video de YouTube
-                 (lo que va después de v= en el link) -->
+            <!-- ID del video de YouTube (lo que va después de v= en el link) -->
             <div class="video-obra" data-video="tWE0pIyKRog">
                 <button class="video-miniatura" type="button" aria-label="Reproducir video">
                     <img src="" alt="Miniatura del video">
@@ -709,7 +705,7 @@ for(let n = 1; n <= TOTAL; n++){
 const botonesFoto = Array.from(document.querySelectorAll('#galeriaObra .foto-obra'));
 
 botonesFoto.forEach((boton, i) => {
-    boton.style.transitionDelay = (i % 5) * 0.15 + "s";
+    boton.style.transitionDelay = (i % 4) * 0.15 + "s";
 });
 
 const observador = new IntersectionObserver((entradas) => {
