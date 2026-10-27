@@ -344,14 +344,14 @@ VIDEO VERTICAL (a la derecha de la ficha técnica)
 }
 
 /*=========================
-GALERÍA (5 fotos en una fila)
+GALERÍA (3 arriba y 2 abajo)
 (flexbox, para que la última fila incompleta
 quede centrada en vez de pegada a la izquierda)
 =========================*/
 
 .galeria-obra{
 
-    width:min(1300px,92%);
+    width:min(1000px,92%);
     margin:100px auto 0;
     padding-bottom:60px;
     display:flex;
@@ -368,7 +368,7 @@ quede centrada en vez de pegada a la izquierda)
     padding:0;
     cursor:pointer;
     display:block;
-    width:calc((100% - 80px)/5);
+    width:calc((100% - 40px)/3);
 
     /* animación de aparición */
     opacity:0;
@@ -488,6 +488,7 @@ LIGHTBOX
     font-size:.72rem;
     letter-spacing:.12em;
     text-transform:uppercase;
+    white-space:nowrap;
 
 }
 
@@ -536,10 +537,6 @@ RESPONSIVE
 .portada-obra img{
     aspect-ratio:auto;
     height:auto;
-}
-
-.foto-obra{
-    width:calc((100% - 40px)/3);
 }
 
 }
@@ -609,12 +606,13 @@ RESPONSIVE
     <div class="info-lateral">
 
         <div class="descripcion-breve">
-        <p>Obra expuesta en <strong>Museo Violeta Parra</strong></p>
-        <p>Trabajo creado a base del archivo de obras de Violeta Parra que se encuentran en el Museo Violeta Parra y en la sala del Museo MAC de Quinta Normal.</p>
-        <p>A base de una metáfora (su título) se crea una obra en la cual con fragmentos de distintas canciones de Violeta Parra comienzan aparecer </p>
-        <p> distintos recortes de sus obras de manera aleatoria, creando así un vídeo collage en donde se comienza aparecer una nueva obra a base </p>
-        <p> de las imágenes que se comienzan a mostrar. El montaje también contaba con retazos de acrilico los cuales colgaban del techo creando 
-        <p> reflejos los cuales al ser movidos por el viento mostraban las obras desde distintas perspectivas en más áreas del museo.</p>
+            <p>Obra expuesta en <strong>Museo Violeta Parra</strong></p>
+            <p>Trabajo creado a base del archivo de obras de Violeta Parra que se encuentran en el Museo Violeta Parra y en la sala del Museo MAC de Quinta Normal.</p>
+            <p>A base de una metáfora (su título) se crea una obra en la cual con fragmentos de distintas canciones de Violeta Parra comienzan aparecer
+              distintos recortes de sus obras de manera aleatoria, creando así un vídeo collage en donde se comienza aparecer una nueva obra a base
+              de las imágenes que se comienzan a mostrar.</p>
+            <p>El montaje también contaba con retazos de acrilico los cuales colgaban del techo creando
+              reflejos los cuales al ser movidos por el viento mostraban las obras desde distintas perspectivas en más áreas del museo.</p>
         </div>
 
         <div class="ficha-fila">
@@ -709,7 +707,7 @@ FOTOS.forEach((nombre, i) => {
 const botonesFoto = Array.from(document.querySelectorAll('#galeriaObra .foto-obra'));
 
 botonesFoto.forEach((boton, i) => {
-    boton.style.transitionDelay = (i % 5) * 0.15 + "s";
+    boton.style.transitionDelay = (i % 3) * 0.15 + "s";
 });
 
 const observador = new IntersectionObserver((entradas) => {
@@ -741,7 +739,7 @@ function abrirLightbox(i){
 function mostrarFoto(){
     lbImagen.src = fotos[indiceActual].src;
     lbImagen.alt = fotos[indiceActual].alt;
-    lbContador.textContent = (indiceActual + 1) + " / " + fotos.length;
+    lbContador.textContent = "Pantallazo del video  ·  " + (indiceActual + 1) + " / " + fotos.length;
 }
 
 function cerrarLightbox(){
