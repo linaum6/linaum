@@ -143,14 +143,18 @@ FICHA + PORTADA + DESCRIPCIÓN
 
 .info-lateral{
 
-    display:flex;
-    flex-direction:column;
-    gap:24px;
+    display:grid;
+    grid-template-columns:1fr 280px;   /* texto a la izquierda, video a la derecha */
+    grid-template-rows:auto 1fr;
+    column-gap:40px;
+    row-gap:24px;
 
 }
 
 .descripcion-breve{
 
+    grid-column:1;
+    grid-row:1;
     margin-top:100px;
 
 }
@@ -172,8 +176,10 @@ FICHA + PORTADA + DESCRIPCIÓN
 
 .ficha-tecnica{
 
+    grid-column:1;
+    grid-row:2;
+    align-self:end;
     padding-bottom:4px;
-    margin-top:auto;
 
 }
 
@@ -240,30 +246,15 @@ FICHA + PORTADA + DESCRIPCIÓN
 }
 
 /*=========================
-VIDEO VERTICAL (a la derecha de la ficha técnica)
+VIDEO VERTICAL (arriba a la derecha, junto al texto)
 =========================*/
-
-.ficha-fila{
-
-    margin-top:auto;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:40px;
-
-}
-
-.ficha-fila .ficha-tecnica{
-
-    margin-top:0;
-    flex:1 1 0;
-    min-width:0;
-
-}
 
 .video-obra{
 
-    flex:0 0 280px;
+    grid-column:2;
+    grid-row:1 / span 2;
+    align-self:start;
+    margin-top:100px;          /* sube o baja el video: menos número = más arriba */
     aspect-ratio:9/16;
     background:#202020;
     position:relative;
@@ -524,13 +515,19 @@ RESPONSIVE
     margin-top:0;
 }
 
-.ficha-fila{
-    flex-direction:column;
-    align-items:flex-start;
+.info-lateral{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+}
+
+.descripcion-breve,
+.ficha-tecnica,
+.video-obra{
+    grid-column:1;
+    grid-row:auto;
 }
 
 .video-obra{
-    flex:none;
     width:min(300px,80%);
 }
 
@@ -594,8 +591,7 @@ RESPONSIVE
 </header>
 
 <!-- ============================================================
-     IMAGEN DE PORTADA + DESCRIPCIÓN + FICHA TÉCNICA
-     Reemplaza los valores de la ficha y la descripción con los datos reales.
+     IMAGEN DE PORTADA + DESCRIPCIÓN + FICHA TÉCNICA + VIDEO
 ============================================================ -->
 <section class="obra-header">
 
@@ -608,40 +604,36 @@ RESPONSIVE
         <div class="descripcion-breve">
             <p>Obra expuesta en <strong>Museo Violeta Parra</strong></p>
             <p>Trabajo creado a base del archivo de obras de Violeta Parra que se encuentran en el Museo Violeta Parra y en la sala del Museo MAC de Quinta Normal.</p>
-            <p>A base de una metáfora (su título) se crea una obra en la cual con fragmentos de distintas canciones de Violeta Parra comienzan a aparecer
-              distintos recortes de sus obras de manera aleatoria, creando así un vídeo collage en donde se comienza a ver una nueva obra a base
+            <p>A base de una metáfora (su título) se crea una obra en la cual con fragmentos de distintas canciones de Violeta Parra comienzan aparecer
+              distintos recortes de sus obras de manera aleatoria, creando así un vídeo collage en donde se comienza aparecer una nueva obra a base
               de las imágenes que se comienzan a mostrar.</p>
-            <p>El montaje también contaba con retazos de acrílico los cuales colgaban del techo creando
+            <p>El montaje también contaba con retazos de acrilico los cuales colgaban del techo creando
               reflejos los cuales al ser movidos por el viento mostraban las obras desde distintas perspectivas en más áreas del museo.</p>
         </div>
 
-        <div class="ficha-fila">
+        <div class="ficha-tecnica">
 
-            <div class="ficha-tecnica">
+            <p class="obra-titulo">Entre los gritos dispersos del color y el susurro inconstante de la forma</p>
 
-                <p class="obra-titulo">Entre los gritos dispersos del color y el susurro inconstante de la forma</p>
+            <dl>
+                <dt>Año</dt>
+                <dd>2025</dd>
 
-                <dl>
-                    <dt>Año</dt>
-                    <dd>2025</dd>
+                <dt>Técnica</dt>
+                <dd>Código arduino proyectado en cortes de acrilico</dd>
 
-                    <dt>Técnica</dt>
-                    <dd>Código Arduino proyectado en cortes de acrílico</dd>
+                <dt>Medidas</dt>
+                <dd>40 x 50 cm</dd>
+            </dl>
 
-                    <dt>Medidas</dt>
-                    <dd>40 x 50 cm</dd>
-                </dl>
+        </div>
 
-            </div>
-
-            <!-- VIDEO VERTICAL: cambia ID_DEL_VIDEO por el ID de YouTube (lo que va después de v= o de /shorts/ en el link) -->
-            <div class="video-obra" data-video="qWu6C_jII7A">
-                <button class="video-miniatura" type="button" aria-label="Reproducir video">
-                    <img src="" alt="Miniatura del video">
-                    <span class="video-play"></span>
-                </button>
-            </div>
-
+        <!-- VIDEO VERTICAL: cambia ID_DEL_VIDEO por el ID de YouTube (lo que va después de v= o de /shorts/ en el link) -->
+        <div class="video-obra" data-video="qWu6C_jII7A">
+            <button class="video-miniatura" type="button" aria-label="Reproducir video">
+                <img src="" alt="Miniatura del video">
+                <span class="video-play"></span>
+            </button>
         </div>
 
     </div>
