@@ -341,14 +341,14 @@ VIDEO (a la derecha de la ficha técnica)
 }
 
 /*=========================
-GALERÍA (filas de 4)
+GALERÍA (filas de 3)
 (flexbox, para que la última fila incompleta
 quede centrada en vez de pegada a la izquierda)
 =========================*/
 
 .galeria-obra{
 
-    width:min(1300px,92%);
+    width:min(1000px,92%);
     margin:100px auto 0;
     padding-bottom:60px;
     display:flex;
@@ -365,7 +365,7 @@ quede centrada en vez de pegada a la izquierda)
     padding:0;
     cursor:pointer;
     display:block;
-    width:calc((100% - 60px)/4);
+    width:calc((100% - 40px)/3);
 
     /* animación de aparición */
     opacity:0;
@@ -703,7 +703,7 @@ for(let n = 1; n <= TOTAL; n++){
 const botonesFoto = Array.from(document.querySelectorAll('#galeriaObra .foto-obra'));
 
 botonesFoto.forEach((boton, i) => {
-    boton.style.transitionDelay = (i % 4) * 0.15 + "s";
+    boton.style.transitionDelay = (i % 3) * 0.15 + "s";
 });
 
 const observador = new IntersectionObserver((entradas) => {
