@@ -170,10 +170,11 @@ AFICHES (3, centrados)
 
     width:100%;
     height:auto;
-    aspect-ratio:var(--proporcion, auto);  /* todos toman la proporción del primer afiche (ver script) */
-    object-fit:cover;                      /* si prefieres que no se recorte nada: contain */
+    aspect-ratio:var(--proporcion, auto);  /* todos toman el tamaño del primer afiche (ver script) */
+    object-fit:contain;                    /* se ve el afiche completo, sin recortes */
+    object-position:center;
     display:block;
-    box-shadow:0 8px 24px rgba(0,0,0,.12);
+    filter:drop-shadow(0 8px 14px rgba(0,0,0,.14));
     transition:.35s ease;
 
 }
@@ -181,7 +182,7 @@ AFICHES (3, centrados)
 .afiche:hover img{
 
     transform:scale(1.03);
-    box-shadow:0 14px 34px rgba(0,0,0,.2);
+    filter:drop-shadow(0 14px 22px rgba(0,0,0,.22));
 
 }
 
@@ -363,7 +364,7 @@ const observador = new IntersectionObserver((entradas) => {
 afiches.forEach(afiche => observador.observe(afiche));
 
 /* ============================================================
-   MISMO TAMAÑO: todos los afiches toman la proporción del primero
+   MISMO TAMAÑO: todos los afiches ocupan el mismo espacio que el primero
 ============================================================ */
 const contenedorAfiches = document.getElementById('afiches');
 const primerAfiche = afiches[0].querySelector('img');
