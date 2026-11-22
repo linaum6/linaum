@@ -1,1 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Exposiciones | linaum</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+@font-face {
+    font-family: "Sineas";
+    src: url("Sineas.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:white;
+font-family:'Manrope',sans-serif;
+color:#202020;
+
+}
+
+/*=========================
+MENÚ
+=========================*/
+
+header{
+
+padding:40px 0 30px;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.nav{
+
+display:flex;
+
+gap:55px;
+
+}
+
+.nav a,
+.nav span{
+
+position:relative;
+
+text-decoration:none;
+
+color:#202020;
+
+font-size:.9rem;
+
+letter-spacing:.08em;
+
+transition:.3s;
+
+}
+
+.nav a::after,
+.nav span::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-7px;
+
+width:0;
+
+height:2px;
+
+background:#B95D3F;
+
+transition:.35s;
+
+}
+
+.nav a:hover{
+
+color:#B95D3F;
+
+}
+
+.nav a:hover::after{
+
+width:100%;
+
+}
+
+.nav .active{
+
+color:#B95D3F;
+
+font-weight:800;
+
+cursor:default;
+
+}
+
+.nav .active::after{
+
+width:100%;
+
+}
+
+/*=========================
+AFICHES (3, centrados)
+=========================*/
+
+.afiches{
+
+    width:min(1100px,92%);
+    margin:60px auto 0;
+    padding-bottom:80px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    gap:50px;
+
+}
+
+.afiche{
+
+    display:block;
+    width:calc((100% - 100px)/3);
+
+    /* animación de aparición */
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 1.3s ease, transform 1.3s ease;
+
+}
+
+.afiche.visible{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
+
+.afiche img{
+
+    width:100%;
+    height:auto;
+    display:block;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);
+    transition:.35s ease;
+
+}
+
+.afiche:hover img{
+
+    transform:scale(1.03);
+    box-shadow:0 14px 34px rgba(0,0,0,.2);
+
+}
+
+/*=========================
+FOOTER
+=========================*/
+
+footer{
+
+    width:100%;
+    text-align:center;
+    padding:70px 20px 35px;
+    font-size:.75rem;
+    font-weight:300;
+    letter-spacing:.12em;
+    color:#B8B8B8;
+
+}
+
+/*=========================
+RESPONSIVE
+=========================*/
+
+@media(max-width:900px){
+
+.afiche{
+    width:calc((100% - 50px)/2);
+}
+
+}
+
+@media(max-width:650px){
+
+.nav{
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:0 20px;
+}
+
+.afiches{
+    gap:36px;
+}
+
+.afiche{
+    width:min(420px,100%);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="obras.html">Obras</a>
+
+<span class="active">Exposiciones</span>
+
+<a href="estudios.html">Estudios</a>
+
+<a href="artista.html">Artista</a>
+
+</nav>
+
+</header>
+
+<!-- ============================================================
+     AFICHES DE LAS EXPOSICIONES
+     Para cambiar un afiche, edita el nombre del archivo (src) y el alt.
+     Para agregar otra exposición, copia un bloque <div class="afiche"> completo.
+============================================================ -->
+<section class="afiches" id="afiches">
+
+    <div class="afiche">
+        <img src="invitacion_susurro.png" alt="Afiche exposición 1">
+    </div>
+
+    <div class="afiche">
+        <img src="invitacion_fraccion.jpg" alt="Afiche exposición 2">
+    </div>
+
+    <div class="afiche">
+        <img src="afiche3.jpg" alt="Afiche exposición 3">
+    </div>
+
+</section>
+
+<footer>
+
+    Catalina Ulloa Mujica · Artista Visual
+
+</footer>
+
+<script>
+/* ============================================================
+   ANIMACIÓN DE APARICIÓN AL HACER SCROLL
+============================================================ */
+const afiches = Array.from(document.querySelectorAll('#afiches .afiche'));
+
+afiches.forEach((afiche, i) => {
+    afiche.style.transitionDelay = (i % 3) * 0.15 + "s";
+});
+
+const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+        if(entrada.isIntersecting){
+            entrada.target.classList.add('visible');
+            observador.unobserve(entrada.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+afiches.forEach(afiche => observador.observe(afiche));
+</script>
+
+</body>
+
+</html>
