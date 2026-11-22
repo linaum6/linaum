@@ -170,6 +170,8 @@ AFICHES (3, centrados)
 
     width:100%;
     height:auto;
+    aspect-ratio:var(--proporcion, auto);  /* todos toman la proporción del primer afiche (ver script) */
+    object-fit:cover;                      /* si prefieres que no se recorte nada: contain */
     display:block;
     box-shadow:0 8px 24px rgba(0,0,0,.12);
     transition:.35s ease;
@@ -320,7 +322,7 @@ RESPONSIVE
     </button>
 
     <button type="button" class="afiche">
-        <img src="invitaccion_fraccion.jpg" alt="Afiche exposición 2">
+        <img src="invitaccion_fraccion" alt="Afiche exposición 2">
     </button>
 
     <button type="button" class="afiche">
@@ -361,6 +363,24 @@ const observador = new IntersectionObserver((entradas) => {
 }, { threshold: 0.1 });
 
 afiches.forEach(afiche => observador.observe(afiche));
+
+/* ============================================================
+   MISMO TAMAÑO: todos los afiches toman la proporción del primero
+============================================================ */
+const contenedorAfiches = document.getElementById('afiches');
+const primerAfiche = afiches[0].querySelector('img');
+
+function igualarTamano(){
+    if(primerAfiche.naturalWidth){
+        contenedorAfiches.style.setProperty('--proporcion', primerAfiche.naturalWidth + ' / ' + primerAfiche.naturalHeight);
+    }
+}
+
+if(primerAfiche.complete){
+    igualarTamano();
+}else{
+    primerAfiche.addEventListener('load', igualarTamano);
+}
 
 /* ============================================================
    AFICHE AMPLIADO: se abre al apretar; se cierra con la X,
