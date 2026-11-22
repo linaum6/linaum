@@ -146,6 +146,10 @@ AFICHES (3, centrados)
 .afiche{
 
     display:block;
+    border:none;
+    background:none;
+    padding:0;
+    cursor:pointer;
     width:calc((100% - 100px)/3);
 
     /* animación de aparición */
@@ -178,6 +182,60 @@ AFICHES (3, centrados)
     box-shadow:0 14px 34px rgba(0,0,0,.2);
 
 }
+
+/*=========================
+AFICHE AMPLIADO (una sola imagen, sin carrusel)
+=========================*/
+
+.lightbox{
+
+    position:fixed;
+    inset:0;
+    background:rgba(20,20,20,.94);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:100;
+
+}
+
+.lightbox.abierto{
+
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+.lightbox img{
+
+    max-width:90vw;
+    max-height:90vh;
+    object-fit:contain;
+    display:block;
+
+}
+
+.lb-cerrar{
+
+    position:absolute;
+    top:28px;
+    right:36px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:1.6rem;
+    font-weight:300;
+    cursor:pointer;
+    opacity:.75;
+    transition:.25s;
+    line-height:1;
+
+}
+
+.lb-cerrar:hover{ opacity:1; }
 
 /*=========================
 FOOTER
@@ -253,23 +311,29 @@ RESPONSIVE
 <!-- ============================================================
      AFICHES DE LAS EXPOSICIONES
      Para cambiar un afiche, edita el nombre del archivo (src) y el alt.
-     Para agregar otra exposición, copia un bloque <div class="afiche"> completo.
+     Para agregar otra exposición, copia un bloque <button class="afiche"> completo.
 ============================================================ -->
 <section class="afiches" id="afiches">
 
-    <div class="afiche">
+    <button type="button" class="afiche">
         <img src="invitacion_susurro.png" alt="Afiche exposición 1">
-    </div>
+    </button>
 
-    <div class="afiche">
+    <button type="button" class="afiche">
         <img src="invitaccion_fraccion.jpg" alt="Afiche exposición 2">
-    </div>
+    </button>
 
-    <div class="afiche">
+    <button type="button" class="afiche">
         <img src="afiche3.jpg" alt="Afiche exposición 3">
-    </div>
+    </button>
 
 </section>
+
+<!-- AFICHE AMPLIADO -->
+<div class="lightbox" id="lightbox">
+    <button class="lb-cerrar" id="lbCerrar" aria-label="Cerrar">✕</button>
+    <img id="lbImagen" src="" alt="">
+</div>
 
 <footer>
 
@@ -297,6 +361,36 @@ const observador = new IntersectionObserver((entradas) => {
 }, { threshold: 0.1 });
 
 afiches.forEach(afiche => observador.observe(afiche));
+
+/* ============================================================
+   AFICHE AMPLIADO: se abre al apretar; se cierra con la X,
+   haciendo click fuera de la imagen o con la tecla Esc
+============================================================ */
+const lightbox = document.getElementById('lightbox');
+const lbImagen = document.getElementById('lbImagen');
+
+afiches.forEach(afiche => {
+    afiche.addEventListener('click', () => {
+        const img = afiche.querySelector('img');
+        lbImagen.src = img.src;
+        lbImagen.alt = img.alt;
+        lightbox.classList.add('abierto');
+    });
+});
+
+function cerrarLightbox(){
+    lightbox.classList.remove('abierto');
+}
+
+document.getElementById('lbCerrar').addEventListener('click', cerrarLightbox);
+
+lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) cerrarLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') cerrarLightbox();
+});
 </script>
 
 </body>
