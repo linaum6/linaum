@@ -729,7 +729,7 @@ function abrirLightbox(i){
 function mostrarFoto(){
     lbImagen.src = fotos[indiceActual].src;
     lbImagen.alt = fotos[indiceActual].alt;
-    lbContador.textContent = "Pantallazo del video  ·  " + (indiceActual + 1) + " / " + fotos.length;
+    lbContador.textContent = (indiceActual + 1) + " / " + fotos.length;
 }
 
 function cerrarLightbox(){
