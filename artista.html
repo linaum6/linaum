@@ -188,7 +188,8 @@ PRESENTACIÓN: FOTO + TEXTO
 
 }
 
-.texto-artista p{
+.texto-artista p,
+.texto-foto p{
 
     font-size:1.18rem;
     font-weight:300;
@@ -197,9 +198,17 @@ PRESENTACIÓN: FOTO + TEXTO
 
 }
 
-.texto-artista p + p{
+.texto-artista p + p,
+.texto-foto p + p{
 
     margin-top:16px;
+
+}
+
+/* Párrafos que van debajo de la foto */
+.texto-foto{
+
+    margin-top:32px;
 
 }
 
@@ -407,12 +416,24 @@ RESPONSIVE
     gap:36px;
 }
 
+/* En pantallas chicas el orden es: foto, texto principal y, al final, los párrafos de debajo de la foto */
+.columna-izquierda{
+    display:contents;
+}
+
 .foto-artista{
+    order:1;
     width:min(420px,100%);
 }
 
 .texto-artista{
+    order:2;
     padding-top:0;
+}
+
+.texto-foto{
+    order:3;
+    margin-top:0;
 }
 
 }
@@ -473,27 +494,36 @@ RESPONSIVE
 </header>
 
 <!-- ============================================================
-     PRESENTACIÓN: foto a la izquierda, texto a la derecha.
-     Los párrafos son un BORRADOR escrito con lo que me has contado:
-     edítalos con tus propias palabras.
+     PRESENTACIÓN: foto a la izquierda (con dos párrafos debajo)
+     y texto a la derecha.
 ============================================================ -->
 <section class="presentacion">
 
-    <div class="foto-artista aparece">
-        <img src="artista.jpeg" alt="Catalina Ulloa Mujica">
+    <!-- COLUMNA IZQUIERDA: foto + los dos últimos párrafos debajo -->
+    <div class="columna-izquierda">
+
+        <div class="foto-artista aparece">
+            <img src="artista.jpeg" alt="Catalina Ulloa Mujica">
+        </div>
+
+        <div class="texto-foto aparece">
+            <p>La hibridación es un tema que ha estado presente en mi interés por el arte desde siempre, solo que la he ido desarrollando de a poco, en distintos momentos.</p>
+            <p>Es con este interés que me veo motivada a trabajar los proximos años, poder llegar a crear mis propios <em>personajes</em> los cuales sean creados completamente desde la imaginación y la experimentación</p>
+        </div>
+
     </div>
 
+    <!-- COLUMNA DERECHA: presentación -->
     <div class="texto-artista aparece">
 
         <p class="nombre">Catalina Ulloa Mujica</p>
 
         <p>Nací en Viña del Mar en 2001 y a los cinco años me mudé a Santiago con mi familia: mis papás y mis dos hermanos mayores.</p>
-      <p></p>Durante gran parte de mi vida no tuve una conexión real con el arte, más allá de dibujar o pintar de vez en cuando. Fue en mi penúltimo año de colegio cuando logré integrarme al mundo del arte.</p>
-      <p>Empecé por la fotografía y, de a poco, me fui adentrando en otras técnicas: el grabado en linóleo, la acuarela y el dibujo digital </p>
-      <p>A lo largo de mi carrera en la Universidad UNIACC descubrí una conexión muy fuerte con la arcilla. Sus posibilidades y la libertad de experimentar con ella me llevaron a basar la mayoría de mis trabajos universitarios,en distintos ramos, en este material. </p>
-      <p> Lo he abordado desde varios puntos: a veces desde la experimentación, otras desde la representación, trabajando la identidad y los rasgos y facciones, y últimamente desde la hibridación entre animal y humano.</p>
-      <p>La hibridaciónes un tema ha estado presente en mi interés por el arte desde siempre, solo que la he ido desarrollando de a poco, en distintos momentos. </p>
-      <p> Es con este interés que me veo motivada a trabajar los proximos años, poder llegar a crear mis propios <em> personajes</em> los cuales sean creados completamente desde la imaginación y la experimentación</p>
+        <p>Durante gran parte de mi vida no tuve una conexión real con el arte, más allá de dibujar o pintar de vez en cuando. Fue en mi penúltimo año de colegio cuando logré integrarme al mundo del arte.</p>
+        <p>Empecé por la fotografía y, de a poco, me fui adentrando en otras técnicas: el grabado en linóleo, la acuarela y el dibujo digital </p>
+        <p>A lo largo de mi carrera en la Universidad UNIACC descubrí una conexión muy fuerte con la arcilla. Sus posibilidades y la libertad de experimentar con ella me llevaron a basar la mayoría de mis trabajos universitarios,en distintos ramos, en este material. </p>
+        <p>Lo he abordado desde varios puntos: a veces desde la experimentación, otras desde la representación, trabajando la identidad y los rasgos y facciones, y últimamente desde la hibridación entre animal y humano.</p>
+
     </div>
 
 </section>
@@ -509,13 +539,13 @@ RESPONSIVE
     <div class="publicacion">
 
         <!-- La portada y el nombre abren el PDF en una pestaña nueva.
-             Cambia libro.pdf por el nombre de tu archivo PDF (súbelo al mismo lugar que las páginas). -->
+             Si cambias el nombre del PDF, cámbialo en los DOS enlaces (portada y nombre). -->
         <a class="portada" href="atraves_delasmanos.pdf" target="_blank" rel="noopener">
-            <img src="atraves_delasmanos.pdf" alt="Portada del libro">
+            <img src="1.png" alt="Portada del libro">
         </a>
 
         <div>
-            <p class="titulo-libro"><a href="libro.pdf" target="_blank" rel="noopener">A tráves de las manos</a></p>
+            <p class="titulo-libro"><a href="atraves_delasmanos.pdf" target="_blank" rel="noopener">A tráves de las manos</a></p>
             <p class="detalle">Libro · 2025 · Exposición Ksa8</p>
             <p>Publicación creada para exposición en Ksa8 "El Gran Cuaderno"..</p>
         </div>
@@ -559,9 +589,12 @@ RESPONSIVE
 ============================================================ */
 const elementos = Array.from(document.querySelectorAll('.aparece'));
 
-/* la foto y el texto de arriba aparecen casi juntos */
-elementos.forEach((el, i) => {
-    el.style.transitionDelay = (i < 2 ? i * 0.15 : 0) + "s";
+/* la foto, el texto principal y los párrafos de debajo aparecen casi juntos */
+elementos.forEach(el => {
+    let retraso = 0;
+    if(el.classList.contains('texto-artista')) retraso = 0.15;
+    if(el.classList.contains('texto-foto'))    retraso = 0.3;
+    el.style.transitionDelay = retraso + "s";
 });
 
 const observador = new IntersectionObserver((entradas) => {
