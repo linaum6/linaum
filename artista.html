@@ -1,1 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Artista | linaum</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+@font-face {
+    font-family: "Sineas";
+    src: url("Sineas.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:white;
+font-family:'Manrope',sans-serif;
+color:#202020;
+
+}
+
+/*=========================
+MENÚ
+=========================*/
+
+header{
+
+padding:40px 0 30px;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.nav{
+
+display:flex;
+
+gap:55px;
+
+}
+
+.nav a,
+.nav span{
+
+position:relative;
+
+text-decoration:none;
+
+color:#202020;
+
+font-size:.9rem;
+
+letter-spacing:.08em;
+
+transition:.3s;
+
+}
+
+.nav a::after,
+.nav span::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-7px;
+
+width:0;
+
+height:2px;
+
+background:#B95D3F;
+
+transition:.35s;
+
+}
+
+.nav a:hover{
+
+color:#B95D3F;
+
+}
+
+.nav a:hover::after{
+
+width:100%;
+
+}
+
+.nav .active{
+
+color:#B95D3F;
+
+font-weight:800;
+
+cursor:default;
+
+}
+
+.nav .active::after{
+
+width:100%;
+
+}
+
+/*=========================
+ANIMACIÓN DE APARICIÓN
+=========================*/
+
+.aparece{
+
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 1.3s ease, transform 1.3s ease;
+
+}
+
+.aparece.visible{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
+
+/*=========================
+PRESENTACIÓN: FOTO + TEXTO
+=========================*/
+
+.presentacion{
+
+    width:min(1300px,92%);
+    margin:40px auto 0;
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:60px;
+    align-items:start;
+
+}
+
+.foto-artista img{
+
+    width:100%;
+    aspect-ratio:4/5;        /* proporción del recorte. Para ver la foto completa, borra esta línea */
+    object-fit:cover;
+    object-position:center;  /* "center top" muestra más la parte de arriba de la foto */
+    display:block;
+
+}
+
+.texto-artista{
+
+    padding-top:20px;
+
+}
+
+.texto-artista .nombre{
+
+    font-family:"Sineas", serif;
+    font-style:italic;
+    font-weight:bold;
+    font-size:2.4rem;
+    line-height:1.2;
+    margin-bottom:28px;
+    color:#202020;
+
+}
+
+.texto-artista p{
+
+    font-size:1.18rem;
+    font-weight:300;
+    line-height:1.75;
+    color:#202020;
+
+}
+
+.texto-artista p + p{
+
+    margin-top:16px;
+
+}
+
+/*=========================
+SECCIONES (Publicaciones y Contacto)
+=========================*/
+
+.seccion{
+
+    width:min(1300px,92%);
+    margin:110px auto 0;
+
+}
+
+.seccion h2{
+
+    font-family:"Sineas", serif;
+    font-style:italic;
+    font-weight:bold;
+    font-size:1.9rem;
+    line-height:1.2;
+    color:#202020;
+    padding-bottom:16px;
+    margin-bottom:34px;
+    border-bottom:1px solid #E6E6E6;
+
+}
+
+/*=========================
+PUBLICACIONES
+=========================*/
+
+.publicacion{
+
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:44px;
+    align-items:start;
+
+}
+
+.publicacion .portada img{
+
+    width:100%;
+    height:auto;
+    display:block;
+    box-shadow:0 8px 24px rgba(0,0,0,.14);
+    transition:.35s ease;
+
+}
+
+.publicacion a.portada:hover img{
+
+    transform:scale(1.03);
+    box-shadow:0 14px 34px rgba(0,0,0,.2);
+
+}
+
+.publicacion .titulo-libro{
+
+    font-family:"Sineas", serif;
+    font-style:italic;
+    font-weight:bold;
+    font-size:1.5rem;
+    line-height:1.3;
+    margin-bottom:6px;
+
+}
+
+.publicacion .detalle{
+
+    font-size:.82rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#B8B8B8;
+    font-weight:600;
+    margin-bottom:18px;
+
+}
+
+.publicacion p{
+
+    font-size:1.08rem;
+    font-weight:300;
+    line-height:1.75;
+
+}
+
+.publicacion .titulo-libro a{
+
+    position:relative;
+    text-decoration:none;
+    color:#202020;
+    transition:.3s;
+
+}
+
+.publicacion .titulo-libro a::after{
+
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#B95D3F;
+    transition:.35s;
+
+}
+
+.publicacion .titulo-libro a:hover{
+
+    color:#B95D3F;
+
+}
+
+.publicacion .titulo-libro a:hover::after{
+
+    width:100%;
+
+}
+
+/*=========================
+CONTACTO
+=========================*/
+
+.contacto{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px 70px;
+
+}
+
+.contacto-item .etiqueta{
+
+    font-size:.82rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#B8B8B8;
+    font-weight:600;
+    margin-bottom:6px;
+
+}
+
+.contacto-item a{
+
+    position:relative;
+    text-decoration:none;
+    color:#202020;
+    font-size:1.12rem;
+    transition:.3s;
+
+}
+
+.contacto-item a::after{
+
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:2px;
+    background:#B95D3F;
+    transition:.35s;
+
+}
+
+.contacto-item a:hover{
+
+    color:#B95D3F;
+
+}
+
+.contacto-item a:hover::after{
+
+    width:100%;
+
+}
+
+/*=========================
+FOOTER
+=========================*/
+
+footer{
+
+    width:100%;
+    text-align:center;
+    padding:90px 20px 35px;
+    font-size:.75rem;
+    font-weight:300;
+    letter-spacing:.12em;
+    color:#B8B8B8;
+
+}
+
+/*=========================
+RESPONSIVE
+=========================*/
+
+@media(max-width:1000px){
+
+.presentacion{
+    grid-template-columns:1fr;
+    gap:36px;
+}
+
+.foto-artista{
+    width:min(420px,100%);
+}
+
+.texto-artista{
+    padding-top:0;
+}
+
+}
+
+@media(max-width:650px){
+
+.nav{
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:0 20px;
+}
+
+.texto-artista .nombre{
+    font-size:1.9rem;
+}
+
+.seccion{
+    margin-top:80px;
+}
+
+.publicacion{
+    grid-template-columns:1fr;
+    gap:26px;
+}
+
+.publicacion .portada{
+    width:min(260px,100%);
+}
+
+.contacto{
+    flex-direction:column;
+    gap:26px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="obras.html">Obras</a>
+
+<a href="exposiciones.html">Exposiciones</a>
+
+<span class="active">Artista</span>
+
+</nav>
+
+</header>
+
+<!-- ============================================================
+     PRESENTACIÓN: foto a la izquierda, texto a la derecha.
+     Los párrafos son un BORRADOR escrito con lo que me has contado:
+     edítalos con tus propias palabras.
+============================================================ -->
+<section class="presentacion">
+
+    <div class="foto-artista aparece">
+        <img src="artista.jpeg" alt="Catalina Ulloa Mujica">
+    </div>
+
+    <div class="texto-artista aparece">
+
+        <p class="nombre">Catalina Ulloa Mujica</p>
+
+        <p>Nací en Viña del Mar en 2001 y a los cinco años me mudé a Santiago con mi familia: mis papás y mis dos hermanos mayores.</p>
+      <p></p>Durante gran parte de mi vida no tuve una conexión real con el arte, más allá de dibujar o pintar de vez en cuando. Fue en mi penúltimo año de colegio cuando logré integrarme al mundo del arte.</p>
+      <p>Empecé por la fotografía y, de a poco, me fui adentrando en otras técnicas: el grabado en linóleo, la acuarela y el dibujo digital </p>
+      <p>A lo largo de mi carrera en la Universidad UNIACC descubrí una conexión muy fuerte con la arcilla. Sus posibilidades y la libertad de experimentar con ella me llevaron a basar la mayoría de mis trabajos universitarios,en distintos ramos, en este material. </p>
+      <p> Lo he abordado desde varios puntos: a veces desde la experimentación, otras desde la representación, trabajando la identidad y los rasgos y facciones, y últimamente desde la hibridación entre animal y humano.</p>
+      <p>La hibridaciónes un tema ha estado presente en mi interés por el arte desde siempre, solo que la he ido desarrollando de a poco, en distintos momentos. </p>
+      <p> Es con este interés que me veo motivada a trabajar los proximos años, poder llegar a crear mis propios <em> personajes</em> los cuales sean creados completamente desde la imaginación y la experimentación</p>
+    </div>
+
+</section>
+
+<!-- ============================================================
+     PUBLICACIONES
+     Para agregar otra publicación, copia un bloque <div class="publicacion"> completo.
+============================================================ -->
+<section class="seccion aparece">
+
+    <h2>Publicaciones</h2>
+
+    <div class="publicacion">
+
+        <!-- La portada y el nombre abren el PDF en una pestaña nueva.
+             Cambia libro.pdf por el nombre de tu archivo PDF (súbelo al mismo lugar que las páginas). -->
+        <a class="portada" href="atraves_delasmanos.pdf" target="_blank" rel="noopener">
+            <img src="atraves_delasmanos.pdf" alt="Portada del libro">
+        </a>
+
+        <div>
+            <p class="titulo-libro"><a href="libro.pdf" target="_blank" rel="noopener">A tráves de las manos</a></p>
+            <p class="detalle">Libro · 2025 · Exposición Ksa8</p>
+            <p>Publicación creada para exposición en Ksa8 "El Gran Cuaderno"..</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ============================================================
+     CONTACTO
+============================================================ -->
+<section class="seccion aparece">
+
+    <h2>Contacto</h2>
+
+    <div class="contacto">
+
+        <div class="contacto-item">
+            <p class="etiqueta">Correo</p>
+            <a href="mailto:cataulloamujica@gmail.com">cataulloamujica@gmail.com</a>
+        </div>
+
+        <div class="contacto-item">
+            <p class="etiqueta">Instagram</p>
+            <a href="https://www.instagram.com/linaum_/" target="_blank" rel="noopener">@linaum_</a>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    Catalina Ulloa Mujica · Artista Visual
+
+</footer>
+
+<script>
+/* ============================================================
+   ANIMACIÓN DE APARICIÓN AL HACER SCROLL
+============================================================ */
+const elementos = Array.from(document.querySelectorAll('.aparece'));
+
+/* la foto y el texto de arriba aparecen casi juntos */
+elementos.forEach((el, i) => {
+    el.style.transitionDelay = (i < 2 ? i * 0.15 : 0) + "s";
+});
+
+const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+        if(entrada.isIntersecting){
+            entrada.target.classList.add('visible');
+            observador.unobserve(entrada.target);
+        }
+    });
+}, { threshold: 0.12 });
+
+elementos.forEach(el => observador.observe(el));
+</script>
+
+</body>
+
+</html>
